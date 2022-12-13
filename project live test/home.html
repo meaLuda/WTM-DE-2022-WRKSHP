@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Project: iNeuron Open Internship</title>
+    <style>
+
+        h1{
+            margin: auto; 
+            width:250px;
+        }
+
+        form { 
+            margin: 0 auto; 
+            width:250px;
+        }
+    </style>
+</head>
+<body style="background-color:#1c87c9;">
+    <h1 style="text-decoration: cadetblue; "> Check If I Can Get A Loan</h1>
+
+    <br>
+    <br>
+
+    <form action="{{url_for('predict') }}"  method='post'>
+        
+        <label for=""></label><br>
+        <input type="text" name="age" value=""><br>
+
+        <label for="">:</label><br>
+        <input type="text" name="TSH" value=""><br>
+
+        <br><br>
+        <button type='submit'> PREDICT </button>
+       
+    </form>
+</body>
+</html>
