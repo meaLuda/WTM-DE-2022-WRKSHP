@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 
 app = Flask(__name__)
-model = pickle.load(open('hypothyroid_model.pkl','rb'))
+model = pickle.load(open('.pkl','rb'))
 
 """
 #Tell the terminal what application to run
@@ -22,7 +22,7 @@ def hello():
 def home():
     """
     required inputs
-    ['age','TSH','T3','TT4','T4U','FTI']
+    []
     """
     return render_template('home.html')
 
