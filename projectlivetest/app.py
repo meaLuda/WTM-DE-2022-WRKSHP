@@ -1,9 +1,10 @@
+import os
 from flask import Flask,render_template,request,jsonify
 import pickle
 import numpy as np
 
-app = Flask(__name__)
-model = pickle.load(open('.pkl','rb'))
+app = Flask(__name__, instance_relative_config=True)
+# model = pickle.load(open('.pkl','rb'))
 
 """
 #Tell the terminal what application to run
@@ -15,10 +16,6 @@ flask run
 """
 
 @app.route('/')
-def hello():
-    return "Hello World! Test run ok "
-
-@app.route('/home')
 def home():
     """
     required inputs
@@ -34,24 +31,15 @@ def predict():
     # convert featuers entered into int
 
     int_featuers = [float(x) for x in request.form.values()]
-
+    print(int_featuers)
     # convert the values to an array
-    final_features = [np.array(int_featuers)]
+    # final_features = [np.array(int_featuers)]
 
-    prediction = model.predict(final_features)
+    # prediction = model.predict(final_features)
 
-   
 
-    if prediction == 0:
-        answer = "Patient has Hypothyroid please analyse further"
-    elif prediction == 1:
-        answer = "Patient does not have hypothyroid thank you!"
-    else:
-        answer = "No predictions were made try again"
-
-    print(answer)
-
-    return render_template('predict.html', prediction_answer = answer)
+    # return render_template('predict.html', prediction_answer = answer)
+    return render_template('prediction.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
