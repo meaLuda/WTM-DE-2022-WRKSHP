@@ -13,13 +13,23 @@ export FLASK_APP=main.py
 set FLASK_APP=main.py
 #Run the application
 flask run
+
+flask --app app --debug run
 """
 
 @app.route('/')
 def home():
     """
     required inputs
-    []
+        Income	
+        Age	
+        Experience	
+        Married/Single	
+        House_Ownership	
+        Car_Ownership	
+        CURRENT_JOB_YRS	
+        CURRENT_HOUSE_YRS	
+
     """
     return render_template('home.html')
 
@@ -28,12 +38,13 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
 
-    # convert featuers entered into int
-
+    # convert featuers entered into int in a list
     int_featuers = [float(x) for x in request.form.values()]
-    print(int_featuers)
+    # print(int_featuers) # check
+
     # convert the values to an array
-    # final_features = [np.array(int_featuers)]
+    final_features = [np.array(int_featuers)]
+    print(final_features) # check
 
     # prediction = model.predict(final_features)
 
