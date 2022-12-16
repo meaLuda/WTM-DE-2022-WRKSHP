@@ -41,24 +41,24 @@ def predict():
     context = []
     if request.method == "POST":
         for key, val in request.form.items():
-            loan_featuers.append(int(val))
+            loan_featuers.append(float(val))
             print(key,val)
 
         
     print(loan_featuers)
 
     # # convert the values to an array
-    # final_features = [np.array(loan_featuers)]
+    final_features = [np.array(loan_featuers)]
     # print(final_features) # check
     # print("\n")
-    prediction = model.predict(loan_featuers)
+    prediction = model.predict(final_features)
 
     print(prediction)
     answer = ''
 
     if prediction[0] == 0:
         answer = 'No'
-    if prediction[0] == 1:
+    else:
         answer = 'Yes'
 
     # return render_template('predict.html', prediction_answer = answer)
