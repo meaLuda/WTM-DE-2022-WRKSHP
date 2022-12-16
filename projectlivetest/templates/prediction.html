@@ -17,31 +17,60 @@
  
         h1{
             margin: auto; 
-            width:500px;
-            color: blue;
-        }
+            color: rgb(255, 255, 255);
+           
+        }   
         h2{
-            color: brown;
+            color: rgb(255, 255, 255);
         }
 
         form { 
             margin: 0 auto; 
             width:800px;
         }
+
+        .my-img {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
-<body style="background-color:green;">
+<body style="background-color:rgb(54, 54, 54);">
     <div class="container-fluid">
-        <div class="row">
+
+
+        <div class="my-img">
+        
             <br>
-            <br>
-            <br>
-            <br>
-            <h1>Prediction For Loan Eligibility Is?</h1>
-            <div class="col">
-                <h2>{{ prediction_answer  }}</h2>
+            <div class="row">
+                <h1>Prediction For Loan Eligibility Is?</h1>
+                <div class="col">
+                    <br>
+                    <br>
+                    
+                    <br>
+                    {% if answer == 'Yes' %}
+                        <h2>You are Eligible for a Loan </h2>
+                        <br>
+                        <br>
+                        <br>
+                        <img style="height: 500px;"  src="https://media.tenor.com/FdvCLB-zwBkAAAAC/money-rain-money-money-money.gif" alt="">
+                    {% elif answer == 'No' %}
+                        <h2>Jaribu Fuliza ama Tala Not Here</h2>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <img style="height: 500px;"  src="https://i.pinimg.com/474x/67/10/c5/6710c525f9682904abdc3f6729026ebc.jpg" alt="">
+
+                    {% endif %}
+                </div>  
+                
             </div>
+            
+
         </div>
+
 
     </div>
    

@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 
 app = Flask(__name__, instance_relative_config=True)
-# model = pickle.load(open('.pkl','rb'))
+model = pickle.load(open('model.pkl','rb'))
 
 """
 #Tell the terminal what application to run
@@ -35,22 +35,34 @@ def home():
 
 
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict',methods=['GET','POST'])
 def predict():
+    loan_featuers = []
+    context = []
+    if request.method == "POST":
+        for key, val in request.form.items():
+            loan_featuers.append(int(val))
+            print(key,val)
 
-    # convert featuers entered into int in a list
-    int_featuers = [float(x) for x in request.form.values()]
-    # print(int_featuers) # check
+        
+    print(loan_featuers)
 
-    # convert the values to an array
-    final_features = [np.array(int_featuers)]
-    print(final_features) # check
+    # # convert the values to an array
+    # final_features = [np.array(loan_featuers)]
+    # print(final_features) # check
+    # print("\n")
+    prediction = model.predict(loan_featuers)
 
-    # prediction = model.predict(final_features)
+    print(prediction)
+    answer = ''
 
+    if prediction[0] == 0:
+        answer = 'No'
+    if prediction[0] == 1:
+        answer = 'Yes'
 
     # return render_template('predict.html', prediction_answer = answer)
-    return render_template('prediction.html')
+    return render_template('prediction.html',answer = answer)
 
 if __name__ == '__main__':
     app.run(debug=True)
